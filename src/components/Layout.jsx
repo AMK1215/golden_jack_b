@@ -8,15 +8,15 @@ const Layout = () => {
   return (
     <div className='layout'>
       <Toaster
-  position="top-center"
-  reverseOrder={false}
-  gutter={8}
-  containerClassName=""
-  containerStyle={{}}
- />
-      <Header/>
-      <Outlet/>
-      <Menubar/>
+        position="top-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+      />
+      <Header />
+      <Outlet />
+      <Menubar />
     </div>
   )
 }
