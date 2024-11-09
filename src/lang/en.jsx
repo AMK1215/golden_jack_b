@@ -69,6 +69,7 @@ const en_data = {
         amount: "Amount",
         status: "Status",
         date: "Date",
+        kyat: "Ks"
     },
     btn: {
         submit: "Submit",

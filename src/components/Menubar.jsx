@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import home from '../assets/images/home.png'
 import promotion from '../assets/images/promo.png'
 import deposit from '../assets/images/deposit.png'
 import contact from '../assets/images/contact.png'
 import profile from '../assets/images/profile.png'
 import { Link, useLocation } from 'react-router-dom'
+import { LanguageContext } from '../contexts/LanguageContext'
 
 
 const Menubar = () => {
+  const { content } = useContext(LanguageContext);
     const menus=[
-        {id:1,img:home,name:'Home',link:'/'},
-        {id:2,img:promotion,name:'Promotion',link:'/promotion'},
-        {id:3,img:deposit,name:'Deposit',link:'/deposit'},
-        {id:4,img:contact,name:'Contact',link:'https://telegram.org/'},
-        {id:5,img:profile,name:'Profile',link:'/profile'},
+        {id:1,img:home,name: content?.nav?.home,link:'/'},
+        {id:2,img:promotion,name: content?.nav?.promotion,link:'/promotion'},
+        {id:3,img:deposit,name: content?.wallet?.deposit,link:'/deposit'},
+        {id:4,img:contact,name: content?.nav?.contact,link:'https://telegram.org/'},
+        {id:5,img:profile,name: content?.nav?.account,link:'/profile'},
      ]
      const location=useLocation();
      if(location.pathname==='/login' ||location.pathname==='/register') return null;

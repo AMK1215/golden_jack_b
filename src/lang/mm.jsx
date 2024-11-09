@@ -2,6 +2,7 @@ const mm_data = {
     auth: {
         login: "အကောင့်ဝင်သည်",
         register: "အကောင့်ဖွင့်သည်",
+        name: "အမည်",
         enter_name: "အမည်ရင်း ထည့်ပါ",
         phone: "ဖုန်း",
         enter_phone: "ဖုန်းနံပါတ် အမှန်ထည့်ပါ",
@@ -68,6 +69,7 @@ const mm_data = {
         amount: "ပမာဏ",
         status: "အခြေအနေ",
         date: "နေ့ရက်",
+        kyat: "ကျပ်"
     },
     btn: {
         submit: "တင်ပို့သည်",

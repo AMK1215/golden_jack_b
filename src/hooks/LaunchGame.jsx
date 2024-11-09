@@ -2,21 +2,19 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BASE_URL from "./baseUrl";
 
-const launchGame = (type, provider, game) => async (e) => {
+const launchGame = (game) => async (e) => {
   e.preventDefault();
   const auth = localStorage.getItem("token");
   if(!auth) {
     window.location.href = "/login";
   }
-
   const inputData = {
-    productId: provider,
-    gameType: type,
-    gameId: game,
+    game_code: game,
+    launch_demo: false
   };
 
   try {
-    const response = await fetch(`${BASE_URL}/game/Seamless/LaunchGame`, {
+    const response = await fetch(`${BASE_URL}/GameLogin`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -27,11 +25,14 @@ const launchGame = (type, provider, game) => async (e) => {
     });
 
     if (!response.ok) {
+      if(response.status === 401) {
+        window.location.href = "/login";
+      }
       throw new Error("Launch Game failed");
     }
 
     const data = await response.json();
-    window.location.href = data.Url;
+    window.location.href = data.message.url;
     // window.open(data.Url, "_blank");
     console.log("Launch Game success");
   } catch (error) {

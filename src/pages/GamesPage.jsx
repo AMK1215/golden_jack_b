@@ -10,34 +10,32 @@ import g8 from '../assets/images/g8.png'
 import g9 from '../assets/images/g9.png'
 import g10 from '../assets/images/g10.png'
 import g11 from '../assets/images/g11.png'
+import useFetch from '../hooks/useFetch'
+import BASE_URL from '../hooks/baseUrl'
+import launchGame from '../hooks/LaunchGame'
 
 
 const GamesPage = () => {
     const [searchParams]=useSearchParams();
-    const games=[
-      {id:1,img:g1,name:'Gates of Olympus 1000'},
-      {id:2,img:g2,name:'Sweet Bonanza 1000'},
-      {id:3,img:g3,name:'Starlight Princess 1000'},
-      {id:4,img:g4,name:'Gates of Olympus'},
-      {id:5,img:g5,name:'Sweet Bonanza'},
-      {id:6,img:g6,name:'Starlight Princess'},
-      {id:8,img:g8,name:'Sugar Rush 1000'},
-      {id:9,img:g9,name:'Pyramid Bonanza'},
-      {id:10,img:g10,name:'5 Lions Megaways'},
-      {id:11,img:g11,name:'Sugar Rush'},
-     ]
+    let provider_id = searchParams.get('provider');
+    let type_id = searchParams.get('type');
+    const {data: games} = useFetch(BASE_URL + "/gamelist/" + provider_id + "/" + type_id);
+    const {data} = useFetch(BASE_URL + "/gameTypeProducts/" + type_id);
+    let providers = data?.products;
+    let provider = providers?.find((item)=>item.id == provider_id).provider_name;
+
   return (
     <div className='p-3'>
       <div className="mb-4 d-flex align-items-center justify-content-between">
-        <p className='fw-semibold pt-2'>{searchParams.get('provider')}</p>
+        <p className='fw-semibold pt-2'>{provider && provider}</p>
         <input type="text" className='inputRed rounded-3 px-2 py-1' placeholder='Search Games...' />
       </div>
       <div className="row mb-5">
-      {games.map((item)=>{
-        return <div className='col-4  col-md-3 col-lg-4 px-2 px-md-3 px-lg-2 text-center cursor-pointer mb-2'>
-          <img src={item.img} className='gameImg' />
-          <small className="gameName fw-semibold ">{item.name}</small>
-          <p className="gameProvider fw-bold">{searchParams.get('provider')}</p>
+      {games && games.map((item, index)=>{
+        return <div key={index} className='col-4  col-md-3 col-lg-4 px-2 px-md-3 px-lg-2 text-center cursor-pointer mb-2' onClick={launchGame(item.game_code)}>
+          <img src={item.image_url} className='gameImg' />
+          <small className="gameName fw-semibold ">{item.game_name}</small>
+          <p className="gameProvider fw-bold">{provider && provider}</p>
         </div>
       })}
       </div>
