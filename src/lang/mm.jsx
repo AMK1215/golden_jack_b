@@ -21,8 +21,11 @@ const mm_data = {
         phone: "ဖုန်း",
         change_password: "လျို့ဝှက်နံပါတ်ပြောင်းသည်",
         old_password: "လျို့ဝှက်နံပါတ် အဟောင်း",
+        // enter_old_password: "လျို့ဝှက်နံပါတ် အဟောင်းထည့်ပါ",
         new_password: "လျို့ဝှက်နံပါတ် အသစ်",
+        // enter_new_password: "လျို့ဝှက်နံပါတ် အသစ်ထည့်ပါ",
         confirm_password: "လျို့ဝှက်နံပါတ် အတည်ပြုပါ",
+        // enter_confirm_password: "လျို့ဝှက်နံပါတ် အတည်ပြုပါ",
         logout: "အကောင့်ထွက်မည်",
         contact_us: "ဆက်သွယ်ရန်",
         my_promotion: "ကျွန်ုပ်ပရိုမိုရှင်း"

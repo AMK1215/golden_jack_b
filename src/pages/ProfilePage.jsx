@@ -5,17 +5,20 @@ import deposit from '../assets/images/deposit.png'
 import withdraw from '../assets/images/withdraw.png'
 import transaction from '../assets/images/transaction.png'
 import name from '../assets/images/name.png'
-import password from '../assets/images/password.png'
+
 import bank from '../assets/images/bank.png'
-import logout from '../assets/images/logout.png'
+import logoutBtn from '../assets/images/logout.png'
 import { Link } from 'react-router-dom'
-import { Button, Form, Modal } from 'react-bootstrap'
+import { Button, Form, Modal, Spinner } from 'react-bootstrap'
 import { LanguageContext } from '../contexts/LanguageContext'
 import { AuthContext } from '../contexts/AuthContext'
+import useLogout from "../hooks/useLogout";
+import ChangePasswordModal from '../components/ChangePasswordModal'
 
 const ProfilePage = () => {
   const { content } = useContext(LanguageContext);
   const { user } = useContext(AuthContext);
+  const { logout, loading } = useLogout();
   // console.log(user);
   
   const lists = [
@@ -23,9 +26,7 @@ const ProfilePage = () => {
     { id: 2, img: withdraw, link: '/with-draw', name: content?.wallet?.withdraw },
     { id: 3, img: transaction, link: '/transactions', name: content?.log?.transfer_log },
   ]
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
   return (
     <div className='p-3' >
       <div className="profileBg rounded-4 p-2 p-sm-3 ">
@@ -50,49 +51,12 @@ const ProfilePage = () => {
         })}
       </div>
       <div className="profileBg rounded-4 pt-3 p-2 p-sm-3 mb-5">
-        {/* <Link to={'/update-profile'} className="d-block mb-3">
-          <img src={name} className='icon me-2' />
-          <small>Name - User231</small>
-        </Link> */}
-        <div className="mb-3" onClick={handleShow}>
-          <img src={password} className='icon me-2' />
-          <small>{content?.profile?.change_password}</small>
-        </div>
-        {/* <Link to={'/banking'} className="d-block mb-3">
-          <img src={bank} className='icon me-2' />
-          <small>Bank Account</small>
-        </Link> */}
-        <div className="mb-3">
-          <img src={logout} className='icon me-2' />
+        <ChangePasswordModal content={content} />
+        <div className="mb-3 cursor-pointer" onClick={logout}>
+          {loading ? <Spinner size="sm" /> : <img src={logoutBtn} className='icon me-2' />}
           <small>{content?.profile?.logout}</small>
         </div>
       </div>
-      <Modal show={show} onHide={handleClose}>
-        {/* <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header> */}
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label className='text-black'>Old Password</Form.Label>
-              <Form.Control type="password" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label className='text-black'>New Password</Form.Label>
-              <Form.Control type="password" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label className='text-black'>Repeat New Password</Form.Label>
-              <Form.Control type="password" />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
-            Update Password
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   )
 }
