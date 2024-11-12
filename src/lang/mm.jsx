@@ -66,7 +66,7 @@ const mm_data = {
         wallet_balance: "လက်ကျန်ငွေ",
         trans_history: "ငွေသွင်းထုတ်မှတ်တမ်း",
         no: "နံပါတ်",
-        account: "ဘဏ်အကောင့်အမည်",
+        // account: "ဘဏ်အကောင့်အမည်",
         bank: "ဘဏ်",
         type: "အမျိုးအစား",
         amount: "ပမာဏ",

@@ -35,7 +35,7 @@ const Header = () => {
           </span>
             <span className='headerBalance fw-semibold d-block'>
               <WalletOutlined className="me-1" style={{ "fontSize": "15px" }} />
-              0 {content?.wallet?.kyat}
+              {user?.balance} {content?.wallet?.kyat}
             </span>
           </Link>
         </div>
