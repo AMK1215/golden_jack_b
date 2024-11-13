@@ -93,8 +93,11 @@ const en_data = {
         win_amount: "Win/Lose",
         close_balance: "Closing Balance",
         type: "Type",
+        account: "Account",
+        bank: "Bank",
+        status: "Status",
         amount: "Amount",
-        datetime: "DateTime"
+        date: "Datetime",
     },
     contact: {
         contact: "Contact Us",

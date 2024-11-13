@@ -93,8 +93,11 @@ const mm_data = {
         win_amount: "နိုင်/ရှုံး",
         close_balance: "လက်ကျန်ငွေ",
         type: "အမျိုးအစား",
+        account: "အကောင့်",
+        bank: "ဘဏ်",
+        status: "အခြေအနေ",
         amount: "ပမာဏ",
-        datetime: "နေ့ရက်"
+        date: "နေ့ရက်",
     },
     contact: {
         contact: "ဆက်သွယ်ရန်",

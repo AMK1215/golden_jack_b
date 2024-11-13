@@ -1,11 +1,22 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Badge, Button, Table } from 'react-bootstrap'
 import { LanguageContext } from '../contexts/LanguageContext';
+import BASE_URL from '../hooks/baseUrl';
+import useFetch from '../hooks/useFetch';
 
 const TransactionsPage = () => {
   const [activeTab, setActiveTab] = useState(2);
-  const {content} = useContext(LanguageContext);
+  const { content } = useContext(LanguageContext);
+  const [url, setUrl] = useState(BASE_URL + "/depositlog");
+  const { data: logs, loading } = useFetch(url);
 
+  useEffect(() => {
+    if (activeTab == 2) {
+      setUrl(BASE_URL + "/depositlog");
+    } else if (activeTab == 3) {
+      setUrl(BASE_URL + "/withdrawlog");
+    }
+  }, [activeTab]);
 
   return (
     <div className='p-3'>
@@ -19,30 +30,45 @@ const TransactionsPage = () => {
         <input type="date" name="" id="" />
         <Button variant="warning">Search</Button>
       </div> */}
-      <Table striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Balance</th>
-            <th>Type</th>
-            <th>Status</th>
-            <th>Bet Date
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>3000</td>
-            <td>With Draw</td>
-            <td>
-              <Badge bg="success">Success</Badge>
-            </td>
-            <td>{new Date().toLocaleDateString()}
-            </td>
-          </tr>
-        </tbody>
-      </Table>
+      <div className="table-responsive">
+        <Table striped bordered hover size="sm">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>{content?.log?.account}</th>
+              <th>{content?.log?.name}</th>
+              <th>{content?.log?.bank}</th>
+              <th>{content?.log?.amount}</th>
+              <th>{content?.log?.status}</th>
+              <th>{content?.log?.date}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {logs.length <= 0 ? (
+              <tr>
+                <td colSpan={6}>No Data Found</td>
+              </tr>
+            ) : (
+              logs.map((log, index) => (
+                <tr key={index}>
+                  <td>{++index}</td>
+                  <td>{log.account_number}</td>
+                  <td>{log.account_name}</td>
+                  <td>{log.payment_type}</td>
+                  <td>{log.amount}</td>
+                  <td>
+                    <span>
+                      <Badge bg={log.status == "Success" ? "success" : log.status == "Pending" ? "warning" : "danger"}>{log.status}</Badge>
+                    </span>
+                  </td>
+                  <td>{log.datetime}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </Table>
+      </div>
+
     </div>
   )
 }
