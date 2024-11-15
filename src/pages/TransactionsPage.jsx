@@ -46,7 +46,7 @@ const TransactionsPage = () => {
           <tbody>
             {logs.length <= 0 ? (
               <tr>
-                <td colSpan={6}>No Data Found</td>
+                <td className='text-center fw-semibold' colSpan={7}>No Data Found</td>
               </tr>
             ) : (
               logs.map((log, index) => (

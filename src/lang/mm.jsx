@@ -41,7 +41,8 @@ const mm_data = {
         money_transfer: "ငွေသွင်းထုတ်မှတ်တမ်း",
         logs: "မှတ်တမ်းများ",
         promotion: "ပရိုမိုရှင်း",
-        account: "အကောင့်"
+        account: "အကောင့်",
+        game_log: "ဂိမ်းမှတ်တမ်း"
     },
     game_type: {
         hot: "ဟော့ဂိမ်း",

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import home from '../assets/images/home.png'
 import promotion from '../assets/images/promo.png'
 import deposit from '../assets/images/deposit.png'
-import contact from '../assets/images/contact.png'
+import game_log from '../assets/images/transaction.png'
 import profile from '../assets/images/profile.png'
 import { Link, useLocation } from 'react-router-dom'
 import { LanguageContext } from '../contexts/LanguageContext'
@@ -14,7 +14,7 @@ const Menubar = () => {
         {id:1,img:home,name: content?.nav?.home,link:'/'},
         {id:2,img:promotion,name: content?.nav?.promotion,link:'/promotion'},
         {id:3,img:deposit,name: content?.wallet?.deposit,link:'/deposit'},
-        {id:4,img:contact,name: content?.nav?.contact,link:'https://telegram.org/'},
+        {id:4,img:game_log,name: content?.nav?.game_log,link:'/transactions'},
         {id:5,img:profile,name: content?.nav?.account,link:'/profile'},
      ]
      const location=useLocation();
