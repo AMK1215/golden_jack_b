@@ -23,7 +23,7 @@ const GamesPage = () => {
       <div className="row mb-5">
       {games && games.map((item, index)=>{
         return <div key={index} className='col-4  col-md-3 col-lg-4 px-2 px-md-3 px-lg-2 text-center cursor-pointer mb-2' onClick={launchGame(item.game_code)}>
-          <img src={item.image_url} className='gameImg' />
+          <img src={item.image_url} className='gameImg w-100' />
           <small className="gameName fw-semibold ">{item.game_name}</small>
           <p className="gameProvider fw-bold">{provider && provider}</p>
         </div>
