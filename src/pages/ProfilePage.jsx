@@ -36,7 +36,7 @@ const ProfilePage = () => {
           </div>
           <div className="col-9 col-sm-8">
             <small className='d-block my-0 py-1'>{content?.auth?.name} : {user?.user_name}</small>
-            <small className='d-block my-0 py-1'>{content?.wallet?.balance} : 0 {content?.wallet?.kyat}</small>
+            <small className='d-block my-0 py-1'>{content?.wallet?.balance} : {user?.balance} {content?.wallet?.kyat}</small>
             {/* <small className='d-block my-0 py-1'>Commission : 0 MMK</small> */}
             <small className='d-block my-0 py-1'>{content?.auth?.phone} : {user?.phone}</small>
           </div>
