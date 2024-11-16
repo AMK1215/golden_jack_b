@@ -12,9 +12,9 @@ import launchGame from '../hooks/LaunchGame'
 
  const GameTab = () => {
     const {content, lan} = useContext(LanguageContext);
-    const [selectedGameTab,setSelectedGameTab]=useState(1);
+    const [selectedGameTab,setSelectedGameTab]=useState(2);
     const tabs=[
-        {id:1,name: content?.game_type?.hot,img:hot}, 
+        // {id:1,name: content?.game_type?.hot,img:hot}, 
         {id:2,name: content?.game_type?.slot,img:slot}, 
         {id:3,name: content?.game_type?.casino,img:arcade}, 
         // {id:4,name: "Arcade",img:arcade},
