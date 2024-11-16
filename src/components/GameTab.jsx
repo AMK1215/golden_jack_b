@@ -52,7 +52,7 @@ const SlotTab=()=>{
             to={`/games?provider=${item.id}&&type=${item.pivot.game_type_id}`} 
             className='d-block mb-3 col-6'
             >
-                <img src={item.imgUrl} className='gameTabImg' />
+                <img src={item.imgUrl} className='w-100' />
             </Link>
         })}
     </div>
@@ -65,7 +65,7 @@ const CasinoTab=()=>{
             return <Link key={index} 
             to={`/games?provider=${item.id}&&type=${item.pivot.game_type_id}`} 
             className='d-block mb-3 col-6'>
-                <img src={item.imgUrl} className='gameTabImg' />
+                <img src={item.imgUrl} className='w-100' />
             </Link>
         })}
     </div>
