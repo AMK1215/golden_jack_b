@@ -3,33 +3,35 @@ import { Badge, Button, Table } from 'react-bootstrap'
 import { LanguageContext } from '../contexts/LanguageContext';
 import BASE_URL from '../hooks/baseUrl';
 import useFetch from '../hooks/useFetch';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const TransactionsPage = () => {
-  const [activeTab, setActiveTab] = useState(2);
+  const navigate = useNavigate();
+  const tab = useSearchParams()[0].get('tab');
   const { content } = useContext(LanguageContext);
   const [url, setUrl] = useState(BASE_URL + "/depositlog");
   const { data: logs, loading } = useFetch(url);
 
   useEffect(() => {
-    if (activeTab == 2) {
+    navigate('/transactions?tab=deposit')
+  }, [])
+
+  useEffect(() => {
+    if (tab == "deposit") {
       setUrl(BASE_URL + "/depositlog");
-    } else if (activeTab == 3) {
+    } else if (tab == "withdraw") {
       setUrl(BASE_URL + "/withdrawlog");
     }
-  }, [activeTab]);
+  }, [tab]);
 
   return (
     <div className='p-3'>
       <p className="d-block fw-semibold">{content?.wallet?.trans_history}</p>
       <div className="d-flex align-items-center gap-2 cursor-pointer">
-        {/* <p onClick={()=>setActiveTab(1)} className={`${activeTab==1 ? 'tableActive' :''} fw-semibold px-3`}  >All</p> */}
-        <p onClick={() => setActiveTab(2)} className={`${activeTab == 2 ? 'tableActive' : ''} fw-semibold px-3`} >{content?.wallet?.deposit}</p>
-        <p onClick={() => setActiveTab(3)} className={`${activeTab == 3 ? 'tableActive' : ''} fw-semibold px-3`} >{content?.wallet?.withdraw}</p>
+        <p onClick={() => navigate('/transactions?tab=deposit')} className={`${tab == "deposit" ? 'tableActive' : ''} fw-semibold px-3`} >{content?.wallet?.deposit}</p>
+        <p onClick={() => navigate('/transactions?tab=withdraw')} className={`${tab == "withdraw" ? 'tableActive' : ''} fw-semibold px-3`} >{content?.wallet?.withdraw}</p>
       </div>
-      {/* <div className="my-3 d-flex align-items-center gap-2">
-        <input type="date" name="" id="" />
-        <Button variant="warning">Search</Button>
-      </div> */}
+
       <div className="table-responsive">
         <Table striped bordered hover size="sm">
           <thead>

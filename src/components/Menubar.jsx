@@ -14,7 +14,7 @@ const Menubar = () => {
         {id:1,img:home,name: content?.nav?.home,link:'/'},
         {id:2,img:promotion,name: content?.nav?.promotion,link:'/promotion'},
         {id:3,img:deposit,name: content?.wallet?.deposit,link:'/deposit'},
-        {id:4,img:game_log,name: content?.nav?.game_log,link:'/transactions'},
+        {id:4,img:game_log,name: content?.nav?.game_log,link:'/game_logs?tab=today'},
         {id:5,img:profile,name: content?.nav?.account,link:'/profile'},
      ]
      const location=useLocation();

@@ -23,7 +23,7 @@ const WithDrawPage = () => {
       amount, payment_type_id, account_name, account_number
     }
     let method = "POST";
-    let redirect = "/transactions";
+    let redirect = "/transactions?tab=withdraw";
     let msg = "Withdrawal successful";
     await inputSubmit(url, inputData, method, redirect, msg);
   }

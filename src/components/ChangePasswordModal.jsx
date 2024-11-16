@@ -6,7 +6,6 @@ import useFormSubmit from "../hooks/useFormSubmit"
 import { AuthContext } from '../contexts/AuthContext';
 
 export default function ChangePasswordModal({ content }) {
-    const {user} = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -22,7 +21,7 @@ export default function ChangePasswordModal({ content }) {
             password: new_password,
             password_confirmation
         }
-        let url = BASE_URL + "/change-password/" + user.id;
+        let url = BASE_URL + "/change-password/";
         let method = "POST";
         let redirect = "/";
         let msg = "Password changed successfully";

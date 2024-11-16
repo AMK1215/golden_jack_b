@@ -11,6 +11,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import GamesPage from "../pages/GamesPage";
 import UpdateProfilePage from "../pages/UpdateProfilePage";
+import GameLogs from "../pages/GameLogs";
 
 const routers=createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const routers=createBrowserRouter([
             {
                 path:'/transactions',
                 element:<TransactionsPage/>  
+            },
+            {
+                path: '/game_logs',
+                element: <GameLogs />
             },
             {
                 path:'/login',

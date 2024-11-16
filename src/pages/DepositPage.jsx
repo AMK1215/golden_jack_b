@@ -33,7 +33,7 @@ const DepositPage = () => {
       agent_payment_type_id: selectedBank?.id
     }
     let method = "POST";
-    let redirect = "/transactions";
+    let redirect = "/transactions?tab=deposit";
     let msg = "Deposit Success!"
     await inputSubmit(url, inputData, method, redirect, msg);
   }
