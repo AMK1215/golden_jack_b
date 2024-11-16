@@ -41,6 +41,9 @@ const GamesPage = () => {
         </form>
       </div>
       <div className="row mb-5">
+        {
+          games.length === 0 && <p className='text-center text-white'>No Games Found</p>
+        }
         {games && games.map((item, index) => {
           return <div key={index} className='col-4  col-md-3 col-lg-4 px-2 px-md-3 px-lg-2 text-center cursor-pointer mb-2' onClick={launchGame(item.game_code)}>
             <img src={item.image_url} className='gameImg w-100' />
