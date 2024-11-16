@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import passwordIcon from '../assets/images/password.png';
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Button, Modal, Form, Spinner } from 'react-bootstrap';
 import BASE_URL from '../hooks/baseUrl';
 import useFormSubmit from "../hooks/useFormSubmit"
+import { AuthContext } from '../contexts/AuthContext';
 
 export default function ChangePasswordModal({ content }) {
+    const {user} = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -12,15 +14,19 @@ export default function ChangePasswordModal({ content }) {
     const [new_password, setNewPassword] = useState("");
     const [password_confirmation, setPasswordConfirmation] = useState("");
 
-    const { inputSubmit, error, loading } = useFormSubmit();
+    const { inputSubmit, error, loading, errMsg } = useFormSubmit();
     const handleChangePassword = async (e) => {
         e.preventDefault();
         let inputData = {
             current_password,
-            new_password,
+            password: new_password,
             password_confirmation
         }
-        let url = BASE_URL + "/change_password";
+        let url = BASE_URL + "/change-password/" + user.id;
+        let method = "POST";
+        let redirect = "/";
+        let msg = "Password changed successfully";
+        await inputSubmit(url, inputData, method, redirect, msg);
     }
 
     return (
@@ -38,7 +44,7 @@ export default function ChangePasswordModal({ content }) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={handleChangePassword}>
                         <Form.Group className="mb-3" controlId="oldPassword">
                             <Form.Label className="text-black">{content?.profile?.old_password}</Form.Label>
                             <Form.Control
@@ -48,6 +54,7 @@ export default function ChangePasswordModal({ content }) {
                                 value={current_password}
                             />
                             {error && error.current_password && <span className='text-danger'>{error.current_password}</span>}
+                            {errMsg && errMsg && <span className='text-danger'>{errMsg}</span>}
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="newPassword">
                             <Form.Label className="text-black">{content?.profile?.new_password}</Form.Label>
@@ -57,7 +64,7 @@ export default function ChangePasswordModal({ content }) {
                                 onChange={e => setNewPassword(e.target.value)}
                                 value={new_password}
                             />
-                            {error && error.new_password && <span className='text-danger'>{error.new_password}</span>}
+                            {error && error.password && <span className='text-danger'>{error.password}</span>}
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="repeatNewPassword">
                             <Form.Label className="text-black">{content?.profile?.confirm_password}</Form.Label>
@@ -71,6 +78,7 @@ export default function ChangePasswordModal({ content }) {
                         </Form.Group>
                         <div className="text-end">
                             <Button type='submit' variant="danger">
+                                {loading && <Spinner className='me-1' animation="border" size="sm" />}
                                 {content?.profile?.change_password}
                             </Button>
                         </div>
