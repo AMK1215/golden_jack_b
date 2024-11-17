@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <header className='cursor-pointer bg-secondary py-2 px-3 d-flex align-items-center justify-content-between'>
       <Link to={'/'}>
-        <img src={logo} className='logo' />
+        <img src={logo}  className='rounded-circle' width={60}  />
       </Link>
       <div className=' d-flex align-items-center gap-sm-2'>
         <div>
