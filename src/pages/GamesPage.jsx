@@ -4,6 +4,7 @@ import useFetch from '../hooks/useFetch'
 import BASE_URL from '../hooks/baseUrl'
 import launchGame from '../hooks/LaunchGame'
 import { IoSearchOutline } from 'react-icons/io5'
+import { Spinner } from 'react-bootstrap'
 
 
 const GamesPage = () => {
@@ -12,15 +13,29 @@ const GamesPage = () => {
   let type_id = searchParams.get('type');
   const [name, setName] = useState("");
   const [url, setUrl] = useState(BASE_URL + "/gamelist/" + provider_id + "/" + type_id);
-  const { data: games } = useFetch(url);
+  const { data: games, loading } = useFetch(url);
   const { data } = useFetch(BASE_URL + "/gameTypeProducts/" + type_id);
   let providers = data?.products;
   let provider = providers?.find((item) => item.id == provider_id).provider_name;
 
   const search = (e) => {
     e.preventDefault();
-    setUrl(BASE_URL + '/gameFilter?name=' + name);
+    setUrl(url + "?name=" + name);
   }
+
+  const [showNoGamesMessage, setShowNoGamesMessage] = useState(false);
+
+  useEffect(() => {
+    if (games.length === 0) {
+      const timer = setTimeout(() => {
+        setShowNoGamesMessage(true);
+      }, 3000);
+
+      return () => clearTimeout(timer); // Clear the timer on component unmount or re-render
+    } else {
+      setShowNoGamesMessage(false); // Reset if games are found
+    }
+  }, [games]);
 
 
   return (
@@ -41,9 +56,9 @@ const GamesPage = () => {
         </form>
       </div>
       <div className="row mb-5">
-        {
-          games.length === 0 && <p className='text-center text-white'>No Games Found</p>
-        }
+        {/* {
+          loading && <p className='text-center text-white'>Loading...</p>
+        } */}
         {games && games.map((item, index) => {
           return <div key={index} className='col-4  col-md-3 col-lg-4 px-2 px-md-3 px-lg-2 text-center cursor-pointer mb-2' onClick={launchGame(item.game_code)}>
             <img src={item.image_url} className='gameImg w-100' />
@@ -51,6 +66,14 @@ const GamesPage = () => {
             <p className="gameProvider fw-bold">{provider && provider}</p>
           </div>
         })}
+        {
+          games.length === 0 && (
+          <div className='text-center'>
+            <Spinner animation="border" variant="danger" />
+            {showNoGamesMessage && <p className="text-white">No Games Found</p>}
+          </div>
+          )
+        }
       </div>
     </div>
   )
