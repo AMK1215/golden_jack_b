@@ -14,7 +14,7 @@ const WithDrawPage = () => {
   const [account_name, setAccountName] = useState("");
   const [account_number, setAccountNumber] = useState("");
 
-  const { inputSubmit, error, loading } = useFormSubmit();
+  const { inputSubmit, error, loading, errMsg } = useFormSubmit();
 
   const handleWithdraw = async (e) => {
     e.preventDefault();
@@ -71,6 +71,7 @@ const WithDrawPage = () => {
             value={amount}
           />
           {error && error.amount && <span>{error.amount}</span>}
+          {errMsg && errMsg && <span>{errMsg}</span>}
         </div>
         <button 
         className="btn bg-white w-full mt-3 text-black rounded-5"
