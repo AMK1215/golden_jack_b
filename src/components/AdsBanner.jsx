@@ -7,7 +7,7 @@ import BASE_URL from '../hooks/baseUrl'
 
 const AdsBanner = () => {
     const MySwal = withReactContent(Swal)
-    const {data: popup} = useFetch(BASE_URL + "/popup-ads-banner");
+    const {data: popup} = useFetch(BASE_URL + "/ads-banner");
     // console.log(popup);
     
     const adsFire=()=>{
