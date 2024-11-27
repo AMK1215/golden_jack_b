@@ -11,7 +11,7 @@ import AuthCheck from '../helpers/AuthCheck'
 const LoginPage = () => {
   // AuthCheck();
   const { content } = useContext(LanguageContext);
-  const [phone, setPhone] = useState("");
+  const [user_name, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const { login, loading, error } = useLogin();
@@ -19,7 +19,7 @@ const LoginPage = () => {
     e.preventDefault();
     let url = BASE_URL + '/login';
     let inputData = {
-      phone,
+      user_name,
       password
     }
     await login(url, inputData);
@@ -33,13 +33,13 @@ const LoginPage = () => {
       <div className="authForm p-4 mt-4">
         <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>{content?.auth?.phone}</Form.Label>
+            <Form.Label>{content?.profile?.username}</Form.Label>
             <Form.Control
               type="text"
-              onChange={(e) => setPhone(e.target.value)}
-              value={phone}
+              onChange={(e) => setUsername(e.target.value)}
+              value={user_name}
             />
-            {error && error.phone && <span className=''>{error.phone}</span>}
+            {error && error.user_name && <span className=''>{error.user_name}</span>}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>{content?.auth?.password}</Form.Label>
