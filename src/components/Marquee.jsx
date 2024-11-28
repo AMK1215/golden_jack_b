@@ -10,7 +10,7 @@ const Marquee = () => {
     <div className='my-2 py-1 px-2 rounded-4 bg-secondary d-flex align-items-center gap-2'>
       <AiOutlineSound size={20} />
       <marquee className='marqueeText' direction="left">
-        {bannerText.text}
+        {bannerText?.text}
       </marquee>
     </div>
   )
