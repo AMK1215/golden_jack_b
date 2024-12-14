@@ -33,7 +33,7 @@ const RegisterPage = () => {
   return (
     <div className='authBg py-3 px-3'>
       <div className="text-center">
-      <img src={logo} className='logo' />
+      <img src={logo}  width={150} className='rounded-circle' />
       </div>
       <div className="authForm p-4 mt-4">
       <Form onSubmit={handleRegister}>
