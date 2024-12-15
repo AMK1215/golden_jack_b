@@ -18,10 +18,10 @@ const AdsBanner = () => {
            })
     }
     useEffect(()=>{
-      if(popup.img_url){
+      if(popup?.img_url){
         adsFire()
       }
-    },[popup.img_url]);
+    },[popup?.img_url]);
   return (
     <div>
       
