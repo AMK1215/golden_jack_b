@@ -8,7 +8,6 @@ import useLogin from '../hooks/useLogin';
 import BASE_URL from '../hooks/baseUrl'
 
 const LoginPage = () => {
-  // AuthCheck();
   const { content } = useContext(LanguageContext);
   const [user_name, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +26,11 @@ const LoginPage = () => {
   return (
     <div className='authBg py-5 px-3'>
       <div className="text-center">
-        <img src={logo} width={150} className='rounded-circle' />
+        <img 
+        src={logo} 
+        width={150} 
+        className='rounded-circle' 
+        />
       </div>
       <div className="authForm p-4 mt-4">
         <Form onSubmit={handleLogin}>
