@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { LanguageContext } from '../contexts/LanguageContext'
 import useLogin from '../hooks/useLogin';
 import BASE_URL from '../hooks/baseUrl'
-import AuthCheck from '../helpers/AuthCheck'
 
 const LoginPage = () => {
   // AuthCheck();
